@@ -1,106 +1,122 @@
+* { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    padding: 20px;
-    background: #f0f2f5;
-    color: #333;
+    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    padding: 15px;
+    margin: 0;
+    background: #f8f9fa;
+    color: #2c3e50;
+    line-height: 1.5;
 }
+
+h1 { font-size: 1.5rem; text-align: center; color: #1a2a3a; margin-bottom: 20px; }
 
 #formulario, .filtros {
     background: white;
     padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    border-radius: 16px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
     margin-bottom: 20px;
 }
 
-input, select, button {
-    display: block;
-    margin: 10px 0;
-    padding: 12px;
+input, select {
     width: 100%;
-    max-width: 400px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
+    padding: 14px;
+    margin: 8px 0;
+    border: 1.5px solid #e0e6ed;
+    border-radius: 10px;
+    font-size: 16px; /* Evita zoom automático no iOS */
+    background: #fff;
 }
 
-button {
-    background: #2ecc71;
+button#btnSalvar {
+    width: 100%;
+    padding: 16px;
+    background: #27ae60;
     color: white;
-    font-weight: bold;
-    cursor: pointer;
     border: none;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: bold;
+    margin-top: 15px;
+    cursor: pointer;
 }
 
-button:hover { background: #27ae60; }
-
-.card {
-    background: white;
-    padding: 15px;
-    margin: 10px 0;
-    border-radius: 8px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border-left: 5px solid #3498db;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-}
-
-.whats-btn {
-    text-decoration: none;
-    background: #25d366;
-    color: white;
-    padding: 3px 8px;
-    border-radius: 4px;
-    font-size: 0.8em;
-    margin-left: 10px;
-}
-
-.acoes button {
-    width: auto;
-    display: inline-block;
-    padding: 8px 15px;
-    margin-left: 5px;
-    font-size: 0.9em;
-}
-
-.btn-editar { background: #f1c40f; color: #333; }
-.btn-resolvido { background: #e74c3c; }
-
-.filtros h2 { font-size: 1.2em; }
-.opcoes-filtros { display: flex; gap: 10px; }
-.opcoes-filtros select { width: 200px; }
+.label-marca { display: block; margin-top: 15px; font-weight: 600; color: #555; font-size: 0.9rem; }
 
 .marcas-grid {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    margin: 10px 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    gap: 8px;
+    margin: 12px 0;
 }
 
 .btn-marca {
-    
-    background: #ffffff;
-    border: 1px solid #dcdcdc; 
-    border-radius: 12px;       
-    padding: 10px 20px;
-    font-size: 16px;
-    color: #333;
+    background: #f1f3f5;
+    border: 2px solid transparent;
+    border-radius: 8px;
+    padding: 10px 5px;
+    font-size: 14px;
+    color: #495057;
     cursor: pointer;
-    width: auto;             
-    display: inline-block;
-    transition: all 0.2s ease;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.05);  */
+    transition: 0.2s;
 }
-
-.btn-marca:hover {
-    background: #f9f9f9;
-    border-color: #bbb;
-}
-
 
 .btn-marca.ativo {
-    background: #e8f5e9;       
-    border-color: #2ecc71;     
+    background: #e8f5e9;
+    border-color: #2ecc71;
     color: #27ae60;
     font-weight: bold;
+}
+
+/* Estilo dos Cards de Chamado */
+.card {
+    background: white;
+    padding: 18px;
+    margin-bottom: 12px;
+    border-radius: 16px;
+    border-left: 6px solid #3498db;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+    display: flex;
+    flex-direction: column; /* Empilha no celular */
+    gap: 12px;
+}
+
+.info b { font-size: 1.1rem; color: #1a2a3a; }
+.info small { color: #7f8c8d; display: block; margin-top: 4px; }
+.tag-marca {
+    display: inline-block;
+    padding: 4px 10px;
+    background: #e9ecef;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    margin-top: 8px;
+}
+
+.acoes { display: flex; gap: 8px; margin-top: 10px; }
+.acoes button {
+    flex: 1;
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.btn-editar { background: #fff3cd; color: #856404; }
+.btn-resolvido { background: #f8d7da; color: #721c24; }
+
+/* Ajuste de Filtros */
+.opcoes-filtros {
+    display: flex;
+    flex-direction: column; /* Empilha no celular */
+    gap: 5px;
+}
+
+/* Quando a tela for maior (Tablet/PC) */
+@media (min-width: 600px) {
+    .opcoes-filtros { flex-direction: row; }
+    .card { flex-direction: row; justify-content: space-between; align-items: center; }
+    .acoes { margin-top: 0; }
 }

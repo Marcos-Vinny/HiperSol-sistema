@@ -2,17 +2,18 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>HiperSol - Chamados</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <h1>Sistema de Chamados - HiperSol</h1>
+    <h1>HiperSol Chamados</h1>
 
     <div id="formulario">
         <input type="hidden" id="idChamado">
         <input id="cliente" placeholder="Nome do cliente">
-        <input id="telefone" placeholder="Telefone" oninput="formatarTelefone(this)">
+        <input id="telefone" placeholder="Telefone" type="tel" oninput="formatarTelefone(this)">
 
         <select id="problema">
             <option value="">Selecione o problema</option>
@@ -26,26 +27,24 @@
         <select id="cidade">
             <option value="">Selecione a cidade</option>
             <option>Ubatã</option><option>Ipiaú</option><option>Ubaitaba</option>
-            <option>Ilhéus</option><option>Itabuna</option><option>Jequié</option><option>Jitaúna</option><option>Não Informada></option>
-
+            <option>Ilhéus</option><option>Itabuna</option><option>Jequié</option>
+            <option>Jitaúna</option><option>Não Informada</option>
         </select>
 
-        <label style="display:block; margin-top:15px; font-weight:bold; color:#555;">Marca do Inversor:</label>
-<div class="marcas-grid">
-    <button type="button" class="btn-marca" onclick="selecionarMarca('Growatt')">Growatt</button>
-    <button type="button" class="btn-marca" onclick="selecionarMarca('SolPlanet')">SolPlanet</button>
-    <button type="button" class="btn-marca" onclick="selecionarMarca('Auxsol/Nansen')">Auxsol/Nansen</button>
-    <button type="button" class="btn-marca" onclick="selecionarMarca('Deye')">Deye</button>
-    <button type="button" class="btn-marca" onclick="selecionarMarca('GoodWe')">GoodWe</button>
-    <button type="button" class="btn-marca" onclick="selecionarMarca('Outra')">Outra</button>
-</div>
-<input id="marcaInversor" type="hidden">
+        <label class="label-marca">Marca do Inversor:</label>
+        <div class="marcas-grid">
+            <button type="button" class="btn-marca" onclick="selecionarMarca('Growatt')">Growatt</button>
+            <button type="button" class="btn-marca" onclick="selecionarMarca('SolPlanet')">SolPlanet</button>
+            <button type="button" class="btn-marca" onclick="selecionarMarca('Auxsol/Nansen')">Auxsol/Nansen</button>
+            <button type="button" class="btn-marca" onclick="selecionarMarca('Deye')">Deye</button>
+            <button type="button" class="btn-marca" onclick="selecionarMarca('GoodWe')">GoodWe</button>
+            <button type="button" class="btn-marca" onclick="selecionarMarca('Outra')">Outra</button>
+        </div>
+        <input id="marcaInversor" type="hidden">
 
-        <button id="btnSalvar" onclick="salvarChamado()" style="background: #27ae60;">Criar Chamado</button>
+        <button id="btnSalvar" onclick="salvarChamado()">Criar Chamado</button>
         <button id="btnCancelar" onclick="limparFormulario()" style="display:none; background:#999;">Cancelar</button>
     </div>
-
-    <hr>
 
     <div class="filtros">
         <h2>Filtros e Busca</h2>
@@ -55,18 +54,16 @@
             <select id="filtroCidade" onchange="filtrarChamados()">
                 <option value="">Todas as Cidades</option>
                 <option>Ubatã</option><option>Ipiaú</option><option>Ubaitaba</option>
-                <option>Ilhéus</option><option>Itabuna</option><option>Jequié</option><option>Jitaúna</option><option>Não Informada</option>
+                <option>Ilhéus</option><option>Itabuna</option><option>Jequié</option>
+                <option>Jitaúna</option><option>Não Informada</option>
             </select>
 
             <select id="filtroMarca" onchange="filtrarChamados()">
-    <option value="">Todas as Marcas</option>
-    <option>Growatt</option>
-    <option>SolPlanet</option>
-    <option>AuxSol/Nansen</option>
-    <option>Deye</option>
-    <option>GoodWe</option>
-    <option>Outra</option>
-</select>
+                <option value="">Todas as Marcas</option>
+                <option>Growatt</option><option>SolPlanet</option>
+                <option>AuxSol/Nansen</option><option>Deye</option>
+                <option>GoodWe</option><option>Outra</option>
+            </select>
 
             <select id="ordenar" onchange="filtrarChamados()">
                 <option value="data">Mais Recentes</option>
@@ -80,5 +77,3 @@
     <script src="script.js"></script>
 </body>
 </html>
-
-<!-- git add .; git commit -m "ajustes"; git push; node server.js -->
