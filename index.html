@@ -33,7 +33,7 @@
 <div class="marcas-grid">
     <button type="button" class="btn-marca" onclick="selecionarMarca('Growatt')">Growatt</button>
     <button type="button" class="btn-marca" onclick="selecionarMarca('SolPlanet')">SolPlanet</button>
-    <button type="button" class="btn-marca" onclick="selecionarMarca('Auxsol/Nansen')">'Auxsol/Nansen</button>
+    <button type="button" class="btn-marca" onclick="selecionarMarca('Auxsol/Nansen')">Auxsol/Nansen</button>
     <button type="button" class="btn-marca" onclick="selecionarMarca('Deye')">Deye</button>
     <button type="button" class="btn-marca" onclick="selecionarMarca('GoodWe')">GoodWe</button>
     <button type="button" class="btn-marca" onclick="selecionarMarca('Outra')">Outra</button>
@@ -58,9 +58,14 @@
             </select>
 
             <select id="filtroMarca" onchange="filtrarChamados()">
-                <option value="">Todas as Marcas</option>
-                <option>Growatt</option><option>WEG</option><option>Canadian</option><option>Deye</option><option>Outra</option>
-            </select>
+    <option value="">Todas as Marcas</option>
+    <option>Growatt</option>
+    <option>SolPlanet</option>
+    <option>AuxSol/Nansen</option>
+    <option>Deye</option>
+    <option>GoodWe</option>
+    <option>Outra</option>
+</select>
 
             <select id="ordenar" onchange="filtrarChamados()">
                 <option value="data">Mais Recentes</option>
