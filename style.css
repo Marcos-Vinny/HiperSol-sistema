@@ -1,0 +1,106 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    padding: 20px;
+    background: #f0f2f5;
+    color: #333;
+}
+
+#formulario, .filtros {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    margin-bottom: 20px;
+}
+
+input, select, button {
+    display: block;
+    margin: 10px 0;
+    padding: 12px;
+    width: 100%;
+    max-width: 400px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+button {
+    background: #2ecc71;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    border: none;
+}
+
+button:hover { background: #27ae60; }
+
+.card {
+    background: white;
+    padding: 15px;
+    margin: 10px 0;
+    border-radius: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-left: 5px solid #3498db;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.whats-btn {
+    text-decoration: none;
+    background: #25d366;
+    color: white;
+    padding: 3px 8px;
+    border-radius: 4px;
+    font-size: 0.8em;
+    margin-left: 10px;
+}
+
+.acoes button {
+    width: auto;
+    display: inline-block;
+    padding: 8px 15px;
+    margin-left: 5px;
+    font-size: 0.9em;
+}
+
+.btn-editar { background: #f1c40f; color: #333; }
+.btn-resolvido { background: #e74c3c; }
+
+.filtros h2 { font-size: 1.2em; }
+.opcoes-filtros { display: flex; gap: 10px; }
+.opcoes-filtros select { width: 200px; }
+
+.marcas-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin: 10px 0;
+}
+
+.btn-marca {
+    /* Base do estilo da imagem */
+    background: #ffffff;
+    border: 1px solid #dcdcdc; /* Cinza claro da borda */
+    border-radius: 12px;       /* Bordas bem arredondadas estilo Pill */
+    padding: 10px 20px;
+    font-size: 16px;
+    color: #333;
+    cursor: pointer;
+    width: auto;               /* Para não ocupar a largura toda */
+    display: inline-block;
+    transition: all 0.2s ease;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05); /* Sombra bem leve */
+}
+
+.btn-marca:hover {
+    background: #f9f9f9;
+    border-color: #bbb;
+}
+
+/* Quando o botão estiver selecionado */
+.btn-marca.ativo {
+    background: #e8f5e9;       /* Verde bem clarinho */
+    border-color: #2ecc71;     /* Borda verde */
+    color: #27ae60;
+    font-weight: bold;
+}

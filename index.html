@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>HiperSol - Chamados</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <h1>Sistema de Chamados - HiperSol</h1>
+
+    <div id="formulario">
+        <input type="hidden" id="idChamado">
+        <input id="cliente" placeholder="Nome do cliente">
+        <input id="telefone" placeholder="Telefone" oninput="formatarTelefone(this)">
+
+        <select id="problema">
+            <option value="">Selecione o problema</option>
+            <option>Inversor desligado</option>
+            <option>logger desligado</option>
+            <option>sem internet</option>
+            <option>inversor em alerta</option>
+            <option>Tensão alta</option>
+        </select>
+
+        <select id="cidade">
+            <option value="">Selecione a cidade</option>
+            <option>Ubatã</option><option>Ipiaú</option><option>Ubaitaba</option>
+            <option>Ilheus</option><option>Itabuna</option><option>Jequié</option><option>Jitaúna</option>
+        </select>
+
+        <label style="display:block; margin-top:15px; font-weight:bold; color:#555;">Marca do Inversor:</label>
+<div class="marcas-grid">
+    <button type="button" class="btn-marca" onclick="selecionarMarca('Growatt')">Growatt</button>
+    <button type="button" class="btn-marca" onclick="selecionarMarca('WEG')">WEG</button>
+    <button type="button" class="btn-marca" onclick="selecionarMarca('Canadian')">Canadian</button>
+    <button type="button" class="btn-marca" onclick="selecionarMarca('Deye')">Deye</button>
+    <button type="button" class="btn-marca" onclick="selecionarMarca('Outra')">Outra</button>
+</div>
+<input id="marcaInversor" type="hidden">
+
+        <button id="btnSalvar" onclick="salvarChamado()" style="background: #27ae60;">Criar Chamado</button>
+        <button id="btnCancelar" onclick="limparFormulario()" style="display:none; background:#999;">Cancelar</button>
+    </div>
+
+    <hr>
+
+    <div class="filtros">
+        <h2>Filtros e Busca</h2>
+        <input type="text" id="busca" placeholder="🔍 Pesquisar por nome..." oninput="filtrarChamados()">
+        
+        <div class="opcoes-filtros">
+            <select id="filtroCidade" onchange="filtrarChamados()">
+                <option value="">Todas as Cidades</option>
+                <option>Ubatã</option><option>Ipiaú</option><option>Ubaitaba</option>
+                <option>Ilheus</option><option>Itabuna</option><option>Jequié</option><option>Jitaúna</option>
+            </select>
+
+            <select id="filtroMarca" onchange="filtrarChamados()">
+                <option value="">Todas as Marcas</option>
+                <option>Growatt</option><option>WEG</option><option>Canadian</option><option>Deye</option><option>Outra</option>
+            </select>
+
+            <select id="ordenar" onchange="filtrarChamados()">
+                <option value="data">Mais Recentes</option>
+                <option value="nome">Ordem Alfabética</option>
+            </select>
+        </div>
+    </div>
+
+    <div id="lista"></div>
+
+    <script src="script.js"></script>
+</body>
+</html>
