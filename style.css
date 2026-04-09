@@ -78,18 +78,18 @@ button:hover { background: #27ae60; }
 }
 
 .btn-marca {
-    /* Base do estilo da imagem */
+    
     background: #ffffff;
-    border: 1px solid #dcdcdc; /* Cinza claro da borda */
-    border-radius: 12px;       /* Bordas bem arredondadas estilo Pill */
+    border: 1px solid #dcdcdc; 
+    border-radius: 12px;       
     padding: 10px 20px;
     font-size: 16px;
     color: #333;
     cursor: pointer;
-    width: auto;               /* Para não ocupar a largura toda */
+    width: auto;             
     display: inline-block;
     transition: all 0.2s ease;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.05); /* Sombra bem leve */
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);  */
 }
 
 .btn-marca:hover {
@@ -97,10 +97,10 @@ button:hover { background: #27ae60; }
     border-color: #bbb;
 }
 
-/* Quando o botão estiver selecionado */
+
 .btn-marca.ativo {
-    background: #e8f5e9;       /* Verde bem clarinho */
-    border-color: #2ecc71;     /* Borda verde */
+    background: #e8f5e9;       
+    border-color: #2ecc71;     
     color: #27ae60;
     font-weight: bold;
 }

@@ -2,14 +2,14 @@ const API = "http://localhost:3000";
 let todosChamados = [];
 
 function selecionarMarca(marca) {
-    // Salva o valor no input escondido
+  
     document.getElementById("marcaInversor").value = marca;
     
-    // Pega todos os botões de marca
+   
     const botoes = document.querySelectorAll('.btn-marca');
     
     botoes.forEach(btn => {
-        // Compara o texto do botão com a marca selecionada (sem espaços e ignorando maiúsculas)
+      
         if (btn.innerText.trim().toLowerCase() === marca.toLowerCase()) {
             btn.classList.add('ativo');
         } else {
@@ -18,7 +18,7 @@ function selecionarMarca(marca) {
     });
 }
 
-// 2. Formatação automática de telefone
+
 function formatarTelefone(input) {
     let v = input.value.replace(/\D/g, "");
     if (v.length > 11) v = v.slice(0, 11);
@@ -34,7 +34,7 @@ function formatarTelefone(input) {
     }
 }
 
-// 3. Salvar ou Atualizar chamado
+
 async function salvarChamado() {
     const id = document.getElementById("idChamado").value;
     const dados = {
@@ -60,14 +60,14 @@ async function salvarChamado() {
     carregarChamados();
 }
 
-// 4. Carregar dados do Banco
+
 async function carregarChamados() {
     const res = await fetch(API + "/chamados");
     todosChamados = await res.json();
     filtrarChamados();
 }
 
-// 5. Filtros (Nome, Cidade, Marca e Ordem)
+
 function filtrarChamados() {
     const termo = document.getElementById("busca").value.toLowerCase();
     const filtroCidade = document.getElementById("filtroCidade").value;
@@ -90,7 +90,6 @@ function filtrarChamados() {
     renderizar(filtrados);
 }
 
-// 6. Renderizar Lista na Tela
 function renderizar(listaChamados) {
     const lista = document.getElementById("lista");
     lista.innerHTML = "";
@@ -117,7 +116,7 @@ function renderizar(listaChamados) {
     });
 }
 
-// 7. Preparar para Edição
+
 function prepararEdicao(id) {
     const c = todosChamados.find(item => item._id === id);
     
@@ -127,7 +126,7 @@ function prepararEdicao(id) {
     document.getElementById("problema").value = c.problema;
     document.getElementById("cidade").value = c.cidade;
     
-    // Ativa o botão da marca correspondente
+    
     selecionarMarca(c.marcaInversor || "");
 
     document.getElementById("btnSalvar").innerText = "Atualizar Chamado";
@@ -135,21 +134,21 @@ function prepararEdicao(id) {
     window.scrollTo(0, 0);
 }
 
-// 8. Limpar Formulario
+
 function limparFormulario() {
     document.getElementById("idChamado").value = "";
     document.getElementById("cliente").value = "";
     document.getElementById("telefone").value = "";
     document.getElementById("marcaInversor").value = "";
     
-    // Remove destaque dos botões de marca
+    
     document.querySelectorAll('.btn-marca').forEach(btn => btn.classList.remove('ativo'));
 
     document.getElementById("btnSalvar").innerText = "Criar Chamado";
     document.getElementById("btnCancelar").style.display = "none";
 }
 
-// 9. Deletar (Resolvido)
+
 async function deletar(id) {
     if (confirm("Deseja marcar como resolvido?")) {
         await fetch(API + "/chamado/" + id, { method: "DELETE" });
@@ -157,5 +156,5 @@ async function deletar(id) {
     }
 }
 
-// Inicialização
+
 carregarChamados();
