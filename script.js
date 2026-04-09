@@ -1,15 +1,12 @@
-const API = "http://localhost:3000";
+const API = "https://hipersol-sistema.onrender.com";
 let todosChamados = [];
 
+// Selecionar marca nos botões
 function selecionarMarca(marca) {
-  
     document.getElementById("marcaInversor").value = marca;
-    
-   
     const botoes = document.querySelectorAll('.btn-marca');
     
     botoes.forEach(btn => {
-      
         if (btn.innerText.trim().toLowerCase() === marca.toLowerCase()) {
             btn.classList.add('ativo');
         } else {
@@ -18,7 +15,7 @@ function selecionarMarca(marca) {
     });
 }
 
-
+// Formatar telefone automaticamente
 function formatarTelefone(input) {
     let v = input.value.replace(/\D/g, "");
     if (v.length > 11) v = v.slice(0, 11);
@@ -34,7 +31,7 @@ function formatarTelefone(input) {
     }
 }
 
-
+// Salvar ou Atualizar chamado no Render
 async function salvarChamado() {
     const id = document.getElementById("idChamado").value;
     const dados = {
@@ -50,23 +47,29 @@ async function salvarChamado() {
     const url = id ? `${API}/chamado/${id}` : `${API}/chamado`;
     const metodo = id ? "PUT" : "POST";
 
-    await fetch(url, {
-        method: metodo,
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(dados)
-    });
-
-    limparFormulario();
-    carregarChamados();
+    try {
+        await fetch(url, {
+            method: metodo,
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(dados)
+        });
+        limparFormulario();
+        carregarChamados();
+    } catch (erro) {
+        alert("Erro ao salvar. O servidor pode estar acordando, tente novamente em 30 segundos.");
+    }
 }
 
-
+// Buscar chamados do servidor
 async function carregarChamados() {
-    const res = await fetch(API + "/chamados");
-    todosChamados = await res.json();
-    filtrarChamados();
+    try {
+        const res = await fetch(API + "/chamados");
+        todosChamados = await res.json();
+        filtrarChamados();
+    } catch (erro) {
+        console.log("Servidor em standby ou erro de conexão.");
+    }
 }
-
 
 function filtrarChamados() {
     const termo = document.getElementById("busca").value.toLowerCase();
@@ -75,7 +78,7 @@ function filtrarChamados() {
     const ordem = document.getElementById("ordenar").value;
 
     let filtrados = todosChamados.filter(c => {
-        const bateNome = c.cliente.toLowerCase().includes(termo);
+        const bateNome = (c.cliente || "").toLowerCase().includes(termo);
         const bateCidade = filtroCidade === "" || c.cidade === filtroCidade;
         const bateMarca = filtroMarca === "" || c.marcaInversor === filtroMarca;
         return bateNome && bateCidade && bateMarca;
@@ -116,38 +119,30 @@ function renderizar(listaChamados) {
     });
 }
 
-
 function prepararEdicao(id) {
     const c = todosChamados.find(item => item._id === id);
-    
     document.getElementById("idChamado").value = c._id;
     document.getElementById("cliente").value = c.cliente;
     document.getElementById("telefone").value = c.telefone;
     document.getElementById("problema").value = c.problema;
     document.getElementById("cidade").value = c.cidade;
-    
-    
     selecionarMarca(c.marcaInversor || "");
-
     document.getElementById("btnSalvar").innerText = "Atualizar Chamado";
     document.getElementById("btnCancelar").style.display = "block";
     window.scrollTo(0, 0);
 }
 
-
 function limparFormulario() {
     document.getElementById("idChamado").value = "";
     document.getElementById("cliente").value = "";
     document.getElementById("telefone").value = "";
+    document.getElementById("problema").value = "";
+    document.getElementById("cidade").value = "";
     document.getElementById("marcaInversor").value = "";
-    
-    
     document.querySelectorAll('.btn-marca').forEach(btn => btn.classList.remove('ativo'));
-
     document.getElementById("btnSalvar").innerText = "Criar Chamado";
     document.getElementById("btnCancelar").style.display = "none";
 }
-
 
 async function deletar(id) {
     if (confirm("Deseja marcar como resolvido?")) {
@@ -156,15 +151,5 @@ async function deletar(id) {
     }
 }
 
-
+// Inicia o sistema carregando os dados do Render
 carregarChamados();
-
-window.onload = listarChamados; 
-
-async function listarChamados() {
-    const resposta = await fetch("http://localhost:3000/chamados");
-    const chamados = await resposta.json();
-    
-   
-    console.log(chamados); 
-}
