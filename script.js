@@ -1,13 +1,16 @@
 const API = "http://localhost:3000";
 let todosChamados = [];
 
-// 1. Selecionar marca via botão (com destaque visual)
 function selecionarMarca(marca) {
+    // Salva o valor no input escondido
     document.getElementById("marcaInversor").value = marca;
     
-    // Gerencia a classe 'ativo' nos botões para mudar a cor
-    document.querySelectorAll('.btn-marca').forEach(btn => {
-        if (btn.innerText === marca) {
+    // Pega todos os botões de marca
+    const botoes = document.querySelectorAll('.btn-marca');
+    
+    botoes.forEach(btn => {
+        // Compara o texto do botão com a marca selecionada (sem espaços e ignorando maiúsculas)
+        if (btn.innerText.trim().toLowerCase() === marca.toLowerCase()) {
             btn.classList.add('ativo');
         } else {
             btn.classList.remove('ativo');
