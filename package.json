@@ -14,5 +14,14 @@
     "cors": "^2.8.6",
     "express": "^5.2.1",
     "mongoose": "^9.4.1"
-  }
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Marcos-Vinny/HiperSol-sistema.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Marcos-Vinny/HiperSol-sistema/issues"
+  },
+  "homepage": "https://github.com/Marcos-Vinny/HiperSol-sistema#readme"
 }
