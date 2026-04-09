@@ -158,3 +158,13 @@ async function deletar(id) {
 
 
 carregarChamados();
+
+window.onload = listarChamados; 
+
+async function listarChamados() {
+    const resposta = await fetch("http://localhost:3000/chamados");
+    const chamados = await resposta.json();
+    
+   
+    console.log(chamados); 
+}
