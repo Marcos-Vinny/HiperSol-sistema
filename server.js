@@ -7,12 +7,15 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-/* CONEXÃO MONGODB */
+
+/* CONEXÃO COM O NOVO MONGODB */
 mongoose.connect(
-  "mongodb+srv://unex:unex1234@pedro.eq0kx7m.mongodb.net/chamados"
-)
-.then(() => console.log("✅ Mongo conectado"))
-.catch(err => console.log(err));
+  "mongodb+srv://HiperSol:HiperSol7@cluster0.kje1avo.mongodb.net/chamados?retryWrites=true&w=majority&appName=Cluster0"
+).then(() => {
+  console.log("✅ Conectado ao Novo Banco HiperSol!");
+}).catch((err) => {
+  console.log("❌ Erro ao conectar no novo banco:", err);
+});
 
 /* MODELO DO CHAMADO COM NOVO CAMPO */
 const Chamado = mongoose.model("Chamado", {
